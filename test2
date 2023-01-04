@@ -1,0 +1,53 @@
+## Test file 2
+Připojte do systému nový disk, rozdělte ho na jeden primární a jeden logický oddíl a oba 
+zformátujte na souborový systém ext3. Nastavte, aby se oba oddíly připojovaly již po spuštěni 
+systému do složek /mnt/diskD a /mnt/diskE. Nastavte, aby se na diskD do složky zálohy 
+zálohovala každou neděli v půl druhé odpoledne konfigurační složka Linuxu do jednoho 
+komprimovaného souboru včetně data vytvoření v názvu souboru. Na druhém oddílu vytvořte 
+symbolický odkaz na soubor definující vytvořené uživatele v systému. (5b)
+sudo fdisk /dev/disk
+n -> p -> enter -> enter -> +2g -> enter
+n -> e -> enter -> enter -> enter
+n -> l -> enter -> enter -> enter
+sudo mkdir /mnt/diskD && sudo mkdir /mnt/diskE
+mkfs -t ext3 /dev/disk1 && mkfs -t ext /dev/disk2
+sudo nano /etc/fstab
+→ /dev/disk1 /mnt/diskD
+→/dev/disk2 /mnt/diskE
+script.sh → tar -zcf /mnt/diskD/zalohy/$(date „+%d-%m-%y“).tar.gz /etc
+sudo crontab -e (30 13 * * 6 /script.sh)
+sudo ln -s /etc/passwd
+• Vytvořte skript, který bude vyhledávat soubory podle názvu nebo velikosti. Při spuštění se skript 
+uživatele zeptá, podle čeho vyhledávat a poté se zadá bud velikost nebo název pro hledáni. 
+Prohledávat se budou pouze domovské složky uživatelů a výsledek bude v textovém souboru 
+vyhledavani.txt. (5b)
+read -p “vyhledat podle nazvu(n) nebo velikosti(v)” volba
+case $volba in
+n) echo Zadej nazev souboru;
+read nazev;
+find /home/uzivatel -name $nazev > /home/uzivatel/vyhledavani.txt;;
+v) echo Zadej velikost souboru;
+read velikost;
+find /home/uzivatel -size $nazev > /home/uzivatel/vyhledavani.txt;;
+esac
+• Ve své domovské složce vytvořte složky prvni a druha, přičemž v prvni budou kopie souboru, ve 
+kterém jsou definovány repozitáře Debianu a souboru definujícího připojené disky po startu 
+systému. Složka druha bude obsahovat soubor struktura.txt, ve kterém bude kompletní 
+adresářová struktura systému a všech disků připojených. (2b) 
+mkdir prvni
+cp /etc/apt/sources.list /home/student/prvni
+cp /etc/fstab /home/student/první
+mkdir druha
+apt install tree
+tree -a / > /home/student/druha/struktura.txt
+• Jakým příkazem promažete složku /tmp jednorázově ve čtvrtek v 9:35 hod.? (2b) 
+rm -r /tmp/* | at 09:35 thursday
+• Jaký je významový rozdíl mezi právy r a x u souborů a složek? (2b) 
+directory x -> je možné do složky vstoupit (cd), ale nelze číst obsah
+file x -> soubor je spustitelný, např script.sh
+directory r -> je možné číst obsah složky
+file r -> je možné vidět napříkald obsah textového dokumentu
+• Spusťte dvakrát proces cpuls, přičemž druhý spuštěný proces bude mít nižší prioritu o 7 než 
+první. (2b)
+cpuls 100 &
+nice -n 7 cpuls 100
