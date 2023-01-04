@@ -1,0 +1,83 @@
+#Testing file 4
+1. Připojte do systému IDE disk o velikosti 4GB V Linuxu ho poté rozdělte na jeden primární a 
+jeden logický disk. Primární disk zformátuje na ext3 a logický na ext4. Popište postup, co 
+musíte udělat, aby primární disk byl připojen při každém spuštěni systému. Poté do systému 
+připojte logický disk a vytvořte na něm složky dokumenty a soupis Do složky dokumenty 
+zkopírujte všechny soubory začínající písmeny a,b,c ze složky /bin a poté ve složce soupis 
+vytvořte soubor soupis.txt, který bude obsahovat očíslovaný seznam pravě překopírovaných 
+souborů. No primárním oddílu vytvořte soubor uzivatele.txt, ve kterém budou všichni 
+nadefinovaní uživatelé v systému. (5b) 
+připojím disk
+lsblk -> vyberu disk
+fdisk /dev/disk
+n -> p -> enter -> enter -> +2g enter
+n -> e -> enter -> enter -> enter
+n -> enter -> enter
+w
+mkfs -t ext3 /dev/disk1
+mkfs -t ext4 /dev/disk2
+vytvořím mount point pro primární disk, poté zapíšu do fstabu cestu k disku a kam ho 
+mountovat
+mkdir /mnt/disk1
+nano /etc/fstab
+→ /dev/disk1 /mnt/disk1
+mkdir /mnt/disk2
+mount -t ext4 /dev/disk2 /mnt/disk2
+mkdir dokumenty
+mkdir soupis
+cp /bin/{a*,b*,c*} …/dokumenty
+cd soupis && touch soupis.txt
+ls ../dokumenty/ | nl > soupis.txt
+cd /mnt/disk1/
+touch uzivatele.txt
+cat /etc/passwd > uzivatele.txt
+
+2. Vytvořte skript, pomocí kterého budete zálohovat konfigurační soubory Linuxu do souboru
+konfigurace_AKTUALNI-DATUM.tar.bz2, který je ve složce ~/zalohy (pokud tato složka 
+neexistuje, tak ji vytvořte). Dále v této složce vytvořte soubor obsah.txt. který bude 
+obsahovat textový výpis obsahu souboru konfigurace konfigurace_AKTUALNIDATUM.tar.bz2. Na konec souboru přidejte seznam aktuálně přihlížených uživatelů (5b) 
+
+
+if [ ! -d ~/zalohy ]
+  then
+  mkdir ~/zalohy
+fi
+
+tar -cjf ~/zalohy/konfigurace_$(date "+%d-%m-%y").tag.bz2 /etc
+
+tar -tvf ~/zalohy/konfigurace_$(date "+%d-%m-%y").tar.bz2 > ~zalohy/obsah.txt
+
+w >> ~/zalohy/obsah.txt
+
+
+3. Uveďte příkaz, kterým vyhledáte slovo student ve všech textových souborech ve složce /etc?
+(2b) 
+
+grep „student“ -r /etc
+
+4. Nastavte systém tak, aby každých 15 min mezi 1, a 3 hodinou odpoledne v pracovní dny
+vypisoval seznam běžících procesů na konec souboru ~/proc.txt. (2b) 
+
+cronteb -e
+→ nano
+15 13-15 1-5 * * ~/myscript.sh
+myscript:
+#!/bin/bash
+if [ ! -e ~/proc.txt ]; then
+touch ~/proc.txt
+fi
+ps -aux >> ~/proc.txt
+
+5. Jak nastavíte, aby každý nově vytvořený soubor měl práva pro všechny skupiny jen pro 
+čtení? (2b)
+
+umask 0222
+!!! hodnoty se zde odečítají → 0777 – 0222 = 0444
+6. Spusťte proces cpuls na 15 s, pozastavte ho a poté ho ukončete. (26) 
+
+cpuls 15
+ctrl + z
+kill (PID)
+7. Jakým příkazem se instaluji v Debianu balíčky lokálně (tzn. z disku, CD, flashky apod.)? (2b)
+
+apt install ./package.deb -y
