@@ -1,0 +1,45 @@
+## testing file 3
+1. Životní cyklus procesu. Popište alespoň jednou větou jednotlivé stavy a důvod změny stavu 
+(4b). 
+
+Tohle tam snad nebude, to prcám
+
+2. Virtuální paměť. Popište implementaci pomoci segmentace se stránkováním (4b).
+Tohle tam snad nebude, to prcám taky 
+
+3. Vytvořte skript, pomoci kterého budete zálohovat domovské složky všech uživatelů do 
+souboru zaloho_DEN-MES-ROK.tar.gz (Datum DEN-MES ROK se bude přidávat dynamicky 
+podle aktuálního data), který je ve složce zaloha (pokud tato složka neexistuje, tak ji 
+vytvořte) v domovské složce uživatele root (2b)
+
+
+4. Nastavte systém tak, aby každé pondělí a středu ve 3 hodiny odpoledne přidal na konec 
+souboru datum.txt v domovské složce uživatele student následující informace: aktuální 
+datum, čas a seznam aktuálně připojených uživatelů do systému. (2b)
+
+5. Ve své domovské složce vytvořte tvrdý a symbolický odkaz na soubor /etc/fstab. Lze zjistit u 
+tvrdých odkazu, který link vznikl jako první? (2b) 
+
+ln /etc/fstab tvrdyOdkaz
+ln -s /etc/fstab symOdkaz
+Nedá, ukazuje pouze data souboru, na který odkazuje
+
+6. Spusťte dvakrát proces cpuls na 500 sekund a poté nastavte, aby druhy spouštěný proces 
+mel vyšší prioritu než první Pokud budete používat signál SIGSTOP, zapište jak. (2b) 
+
+Ctrl+Z -> SIGSTOP
+Nebo -> cpuls 500 &
+top
+Najdu oba procesy…
+renice [nižší hodnota než druhý proces např. -5 (defaultně 0)] [PID]
+7. Vypište na obrazovku prvních 12 řádků souboru /etc/passwd seřazených podle abecedy. (2b) 
+
+cat /etc/passwd |head -12 |sort
+8. U domovského adresáře studenta nastavte následující oprávnění. Vlastník plný přistup, 
+skupina pouze zobrazeni obsahu a ostatní bez možnosti přístupu. Vysvětlete význam 
+jednotlivých práv. (2b)
+
+chmod 740 /home/student
+r- může číst/zobrazit obsah souboru/složky
+w-může vytvářet nebo mazat položky ve složce / zapisovat do souboru
+x-může spouštět programy a vstupovat do složky
