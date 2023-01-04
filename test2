@@ -51,3 +51,7 @@ file r -> je možné vidět napříkald obsah textového dokumentu
 první. (2b)
 cpuls 100 &
 nice -n 7 cpuls 100
+
+ Uveďte oba způsoby vymazání nepotřebných stažených baličku v Debianu. (2b)
+apt remove „package“
+dpkg –remove „package“
