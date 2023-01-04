@@ -7,15 +7,33 @@ Tohle tam snad nebude, to prcám
 2. Virtuální paměť. Popište implementaci pomoci segmentace se stránkováním (4b).
 Tohle tam snad nebude, to prcám taky 
 
+
+
 3. Vytvořte skript, pomoci kterého budete zálohovat domovské složky všech uživatelů do 
 souboru zaloho_DEN-MES-ROK.tar.gz (Datum DEN-MES ROK se bude přidávat dynamicky 
 podle aktuálního data), který je ve složce zaloha (pokud tato složka neexistuje, tak ji 
 vytvořte) v domovské složce uživatele root (2b)
 
+#!/bin/bash
+set $(date)
+
+if [ ! -e /root/zalohy ]
+then
+  mkdir /root/zalohy
+  echo vytvaram zlozku zalohy
+else
+  echo Zlozka existuje
+fi
+tar -czf /root/zalohy/zaloha-$3-$2-$6.tar.gz /home/
+
 
 4. Nastavte systém tak, aby každé pondělí a středu ve 3 hodiny odpoledne přidal na konec 
 souboru datum.txt v domovské složce uživatele student následující informace: aktuální 
 datum, čas a seznam aktuálně připojených uživatelů do systému. (2b)
+
+crontab -e
+
+ 0 15 * * 1,3 date +%d-%m-%y/%H:%M:%S >> /home/student/datum.txt
 
 5. Ve své domovské složce vytvořte tvrdý a symbolický odkaz na soubor /etc/fstab. Lze zjistit u 
 tvrdých odkazu, který link vznikl jako první? (2b) 
