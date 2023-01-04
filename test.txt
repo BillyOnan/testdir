@@ -79,3 +79,29 @@ bg 1
 v dlouhém výpisu?(2b)
 • ls -al
 • alias ls=‘ls -al‘
+
+
+## Disky
+
+1. pripojit
+add -> hard disk -> SCSI -> atd.. manualne pred zapnutim systemu
+2.vytvorit oddily
+cfdisk    a- primary master  b- slave  c- secondary master  d- slave
+cfdisk /dev/sdb -> pak dos -> new ; 10G ; primary ->new ; 5G ; extended ->..-> write ; yes
+primarni 1-4     rozsireni zacinaji od 5...
+3. naformatovat
+mkfs -t FSTYPE DEVICE
+mkfs -t ext2 /dev/sdb1  pote    mkfs -t ext3 /dev/sdb5  pote    mkfs -t ext4 /dev/sdb3
+4.pripojit
+mount -t FSTYPE DEVICE KAM
+df    kontrola co je pripojene
+mkdir /media/disk1 /media/disk2 /media/data            slozka mnt nebo media je to jedno
+mount -t ext2 /dev/sdb1 /media/disk1    mount -t ext3 /dev/sdb5 /media/disk2    mount -t ext4 /dev/sdb3 /media/data
+umount /dev/sdb3
+nano /etc/fstab zde aby to zustalo i po restartu ci vypnuti
+co        kam        fs        jak                zaloha            poradi
+/dev/sdb1    /media/disk1    auto        defaults nebo readonly-atd    0            0
+/dev/sdb5 /media/disk1 auto noauto 0 0
+pak pouze mount /dev/sdb5
+
+##konec
