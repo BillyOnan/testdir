@@ -1,0 +1,81 @@
+#beggining of text file
+
+1. Popište celý postup následujícího úkolu. Jste přihlášen jako root, přihlaste se na druhé 
+konzoli jako student a zde v jeho domovském adresáři vytvořte adresáře zálohy a 
+dokumenty. Do adresáře zálohy zálohujte do jednoho souboru komprimovaného gzip celou 
+konfigurační složku linuxu. Ve složce dokumenty vytvořte soubor obsah.txt který bude 
+obsahovat obsah složky /lib včetně podadresářů s očíslovanými řádky. Poté se přepněte zpět 
+k rootovi a změňte vlastníka souboru obsah.txt na root.(5b)
+
+Alt + F2
+Přihlášení…
+mkdir zalohy dokumenty
+cd zalohy
+tar -czf zaloha.tar.gzip /etc
+cd .. (nebo cd~)
+ls -alR /lib | cat -n > ~/dokumenty/obsah.txt
+Alt + F1
+cd /home/student/dokumenty/
+chown root obsah.txt
+
+2. Vytvořte skript, který se uživatele zeptá, jestli chce vytvořit tvrdý nebo symbolický odkaz a 
+také na zdroj tohoto odkazu a název odkazu. O úspěšném vytvoření provede zprávu, a pokud 
+zdroj neexistuje, vypíše chybu. Poté se uživatele, za kolik minut má vypnout počítač a za 
+tento čas ho vypne. (5b)
+
+read -p 'Zadajte subor, na ktory bude vytvoreny odkaz' path
+
+until [ -e $path ]
+do
+  echo -n Soubor $path neexistuje, zadajte znovu:
+  read path
+done
+
+check = 0
+
+while [ $check -le 1 ]
+do
+  read -p 'Typ odkazu: [Symbolicky/Tvrdy] [S/T] ' type
+  read -p 'Nazev odkazu: ' name
+  
+  case $type in
+    T) echo Vytvaram tvrdy odkaz; ln $path $name; check=$(( $check + 2));;
+    S) echo Vytvaram symbolicky odkaz; ln -s $path $name; check=$(( $check + 2));;
+    *) echo Bol zadany zly odkaz !;;
+  esac
+done
+
+read -p 'Zadajte pocet minu, za kolko sa ma pocitac vypnut: ' time
+
+echo -n Pocitac sa vypne za $time min
+shutdown -h $time
+
+
+
+3. Vytvořte soubor uzivatele.txt v domovském adresáři uživatele student. Tento soubor bude 
+obsahovat výpis domovského adresáře uživatele root a student a na konec tohoto souboru 
+vložte výpis aktuálně připojených uživatelů.(2b)
+
+ODPOVĚĎ:
+export CIL=/home/student/uzivatele.txt
+touch $CIL
+ls -al /root/ > $CIL
+ls -al /home/student/ >> $CIL
+users >> $CIL
+4. Nastavte systém tak, aby každých 15 min mezi 1. a 3. hodinou odpoledne v pracovní dny 
+vypisoval seznam běžících procesů na konec souboru ~/proc.txt. (2b)
+crontab -e
+*/15 13-15 * * 1-5 top >> ~/proc.txt
+5. Napište oba způsoby změn práv souboru textovka.txt tak, aby vlastník měl všechny práva, 
+skupina práva pro čtení, a ostatní žádná práva. (2b)
+chmod 740 textovka.txt
+chmod u=rwx,g=r,o= textovka.txt
+6. Spusťte proces cpuls na 15s, pozastavte ho a poté ho přesuňte na pozadí. (2b)
+cpuls 15
+CTRL + Z
+jobs
+bg 1
+7. Jak nastavíte, aby se při zadání příkazu pro výpis adresáře zrovna vypsaly i skryté soubory 
+v dlouhém výpisu?(2b)
+• ls -al
+• alias ls=‘ls -al‘
