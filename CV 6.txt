@@ -1,0 +1,63 @@
+nepisala sa pisomka
+
+alias skratka='prikaz'
+alias ls='ls -alh'
+
+alias plati len pre aktualne "nabootovane rozhranie"
+
+ak to chcem mat furt, musim to dat do suboru .bashrc
+
+#komprimacie#
+
+tar -
+v linuxe su:
+	.gzip >> g2
+	.bzip2 >>> bz2
+
+-R rekurzivne.. vratane podzloziek
+
+gzip subor
+gunzip subor
+
+bzip2 subor -v -parameter vypisuje co spravil
+
+tar c/x/t|f zaloha.tar - medzi c a f sa da zipovat rovno ak tam dam z -gz alebo j- bz2
+
+ak chcem viac suborov dokopy.. tak si spravim tar. čim ich spojim dokopy a potom ich skomprimujem
+tar to dava dokopy a s právami
+
+zbalenie tar czf zaloha
+odbalenie tar xf zaloha
+ 
+rozbalim tam kde som  za celym prikazom -C a cestu rozbali sa to tam ak to rozbali s / tak si moze prepisat svoje etc haha
+
+du - diskusage parameter -h .. human readable ukaze velkosti -d je depth .. to znamna ze zobrazi len tolko podzloziek do akej hlbky chcem..
+
+df - disk free zobrz ivsetky pripojene disky
+
+free - zobrazi statistiky o RAM pamati free -m v mb
+
+uptime - ako dlho bezi system, dobre pre servery 
+
+whoami - kto som ? ukaze mi ako som prihlaseny
+
+	ak to zadam s medzerami who am i.. podrobnejsi vypis
+w - kto je prihlaseny, v IDLE vidim ze tam niekto nieco robil
+
+who - je menej podrobny
+
+last - statistika poslednych prihlasených
+
+users - prihlasenia jednotlivych userov
+
+id - informacie o aktualno uzivatelovi 
+	kazdy uzivatel ma jedinecne cislo tak ako aj procesy pri kill
+	skupiny maju tiez svoje jedinecne cislo...
+
+id nazovkonkretho uzivale - vypise aj ktorych skupin je clenom atd
+
+which nazovprikazu napr. which ls -napise kde ho najdeme
+
+whereis 
+
+	

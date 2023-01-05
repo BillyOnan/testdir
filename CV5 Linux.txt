@@ -1,0 +1,69 @@
+cpuls <cas> - pocitanie prvocisiel, program parameter -c tzn. cas celkom, parameter &, to pusti v pozadi
+CTRL Z - vypise mi cislo procesu
+fg %1 - vrati zastaveny proces 1
+jobs - vypise procesy
+bg %cisloprocesu - zapne sa na pozadi
+CTRL + C - okamzite ukoncenie
+	Ukoncit mozem vzdy co bezi v popredi, tzn. ak je nieco bg musim to zapnut fg
+ps - vypis procesov, ktore bezia PID - identifikator procesu
+ALT + F1 spat k rootovi
+ps aux - uplne vsetky procesy vypisem 
+top - kazdu sekundu/dve sa prekresluje, aktualne procesy ukazuje
+kill PID_Procesu
+kill -9 zabit zakazdu cenu hocico
+kill -15 korektne vypnutie
+bez -15 sa berie ako keby tam bolo, teda korektné
+nastavovanie priorit / ohladuplnost - nice číslo
+nice -20 až 19 čím mensie cislo tým vacsia priorita
+ohladuplnost sa dedí pri procesoch, ak spustim nieco cez bash zdedí prioritu bashu
+
+renice priorita PID - znovunastavenie ohladuplnosti 
+nice -n ohladuplnost proces
+napr. 
+nice -n 5 cpuls 200 &
+zmenit pre vsetky procesy uzivatela ako admin
+
+renice priorita -u user
+
+prvy stlpec v ls oznacuje prava
+
+-|---	|---	|---|
+d|rwx	|rwx	|rwx|
+  user	 group	 others
+
+r - read mozeme ho citat pomocou cat
+w - write zápis alebo mazanie 
+x - aby bol spustitelny/nespustitelny
+
+u suborov
+
+r - mozem sa pozriet na tu zlozku pomocou ls
+w - mozem vytvarat zlozky podlozky, pracovat snou
+x - nemozem vojst prikazom cd
+
+ako menit práva
+1/ symbolicky - 
+	chmod u/g/o/a +/-/= subor     -zmenit prava pre user/group/others/all prv komu pridat/odobrat co
+
+mozem pridelit prava aj ako 110|100|100
+2/ oktanove 0 - 7
+chmod 644 subor     ekvivalent   chmod 110100100
+
+
+chown vlastnik:skupina subor/zlozka - skupina tam byt nemusi
+
+chgrp skupina subor/zlozka - zmena len skupiny
+
+newgrp nazovskupiny - do ktorej patrim ale niesom tam práve- potrebujem sa dostat k pravam skupiny docasne, naspat sa bud znovuprihlasim alebo zas newgrp a to kde som
+
+umask - 666 - cislo suboru - default prava
+	666 - 022 = 6 4 4 -- aktualne prava
+
+napr. umask 066 - ked vytvorim subor etc. budu mat defaultne tieto práva IzI
+
+pri zlozke sa to odcita od 777 - 066 = 711 tzn. rwx|--x|--x
+			   777 - 022 = 755      
+				
+
+ 
+

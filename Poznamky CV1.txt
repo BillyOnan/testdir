@@ -1,0 +1,10 @@
+cd
+md
+copy
+xcopy - aj nulove subory
+del 
+attrib
+cd .. - do nadradeneho  adresara
+ren - rename - len subory
+move - presun suborov
+type - pozriem sa na txt subor

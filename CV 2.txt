@@ -1,0 +1,42 @@
+@echo off
+rem poznámka
+:: poznámka
+echo ahoj
+
+
+goto start
+
+:start
+set prom=10
+echo ulozena preenna je %prom%
+
+
+rem externa premmenna je s pouzitim % .. ak otvorim pomocou cmd tak ich vlozim
+set prom2 = %1
+
+
+rem cyklus for
+rem in (od, aký krok, do)
+FOR /1 %%a IN (1,5,100) DO echo %%a
+
+
+rem cyklus Choice
+
+CHOICE /c ZPI /M "Zrusi, pokracovat alebo ignorovat"
+echo %errorlevel%
+
+rem cyklus IF
+
+set vek=20
+
+if %vek%== 20 echo je mi 20 let.
+
+if %vek% gtr 20 echo je viac ako 20,... 
+
+rem vsetko musi byt jak toto bo ci pana
+
+SET vek2 = 20
+IF %vek2% == 20 (echo je ti 20 let
+) else (nemas 20 r.)
+
+pause

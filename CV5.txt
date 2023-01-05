@@ -1,0 +1,44 @@
+ODKAZY linky
+ln _
+/etc/passwd
+ak by si chcem spravit odkaz na tieto data napr z /root/hesla si vytvorim link
+
+./ aktualna zlozka
+
+ln zdroj nazov_odkazu - odkaz tvrdý nejde dat odkaz na zlozku ide len odkaz na rovnaky oddiel/disk
+
+makky odkaz - symbolický   ln -s zdroj nazov_odkazu 	pred suborom v dlhom vypise je l miesto - 
+
+//textove editory
+vi 
+nano
+
+head - hlavicka suboru za pomlcku kolko chcem pocet napr. head -5 - prvych 5
+
+tail - chvost/ vypise poslednych 10 riadkov
+
+za | dam filter priklad:
+			cat -n /etc/passwd |head alebo tail ... 
+
+
+ ls -l |cat -n na konci vypisu mi to ocisluj
+
+alebo ls -l |cat -n |head -5
+
+unique vyhadzuje duplicity ale zasebou tzn.. rovnake mena by som prve zoradil a tak dal filter unique
+sort mena |uniq
+
+diff - porovnava dva textove subory vystupom je rozdiel
+da sa vyuzit unique pri diffe
+
+grep -vyhladava ttext podla definicie napr. grep mena vypisniecoho
+		grep -n vyray kde
+		viem hladat aj vo viac naraz
+
+find kde -name meno
+find kde -size +100k
+find ./ -size +100k v aktualnej zlozke hladam vacsie subory ako 100kB
+	-atime +365 -starsie nez kolko dni
+	-mmin -5 mladsie ako 5 min 
+
+cat -n /etc/passwd |head -12 |tail -7 vypise riadok od 6 -12

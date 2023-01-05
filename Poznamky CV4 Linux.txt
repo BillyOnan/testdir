@@ -1,0 +1,37 @@
+nazov 
+Linux classroom 5.10.0-17
+5 - verzia jadra
+10 - podverzia, parne cisla su stabilne verzie a neparne su testovacie
+# -> admin
+$ -> Uzivatel
+ALT + F2 - > odhlasit sa
+clear - zmaze konzolu
+ls - obsah aktualnej zlozky
+podzlozka root dalsi disk byva v zlozke media
+man - manual
+linux -> CASE SENSITIVE
+mkdir
+rmdir
+cd - absolutna cesta /root/.....
+cp zdroj ciel - kopirovanie
+mv zdroj ciel - presuvanie
+linux bez pripon - example
+cp /etc/p* prvni/
+skopiruje do prvni vsetky slozky zacinajuce na p
+-v - vypisuje co sa deje
+-i pytaj sa ak prepisujes
+rm - mazanie súboru
+-l - long .. napr ls -al - vypis vsetko(a) dlhý (l)
+presmerovanie vstupu a vystupu < vstup a > vystup
+cat - zobrazit
+-n - ocislovat vypis
+|more - strankovanie
+-b - cisluje riadky ktore niesu prazdne
+touch - vytvorit rychlo nejaky subor textovy 					touch nazov
+	ak chcem "liznu" subor aby som zmenil datum otvorenia			touch nazov
+VYPNUTIE PC
+shutdown -h -vypne a korektne vypne vsetky procesy mozem dat now alebo cislo.. 15- vypne za 15 min
+reboot - restart
+halt - uzivatel co nema pravo na shutdown
+sudo vynutit prikaz, v debiane su .. nemusim sa na vypnutie prejekotit do rootu
+

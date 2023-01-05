@@ -1,0 +1,39 @@
+BASH Scripty
+Prava mame z masky opakovanie -- :D 644 zakladne
+skript pomocou nano
+ex:
+chmod u+x skript55.h
+
+./Script1.h    .. spustim ho v aktualnej zlozke
+
+chowm student:useers /home/student/Script1.h
+
+pri davkovych suboroch sme pouzivala %1 ... pre paramatre tu bude dolar $1 ...
+
+#!/bin/bash
+na začiatku podla toho v com to robime, ale v linuxe je bash. aby vedel ako to spustit 
+
+skript na zalozenie zalohy konfiguracnej zlozky linuxu etc
+
+test ci existuje subor
+skript:
+
+echo Skript na TEST
+test -d $1
+echo $?
+
+potom chmod...
+
+echo Skript na TEST
+if test -d $1
+then
+	echo Slozka $1 EXISTUJE
+else
+	echo Slozka $1 NEEXISTUJE
+fi
+
+Časť prikladu z písomky
+
+
+
+
