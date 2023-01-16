@@ -1,0 +1,34 @@
+Running the command ls /dev/sd* will now return a new entry.
+ Create one partition on new disk, example to sdx:                                                                                                                                                                                                            fdisk /dev/sdx                                                                                                                                   
+     Command (m for help): p                                                                                                            
+     Command (m for help): n                                                                                                            
+     Command action                                                                                                                                        
+        e  extended                                                                                                                                                 
+        p primary partition (1-4)                                                                                                                               
+     p                                                                                                                                                       
+     Partition number (1-4): 1    
+     First cylinder (1-22400, default 1): <RETURN>
+     Using default value 1
+     Last cylinder or +size or +sizeM or +sizeK (1-22800, default 22800): 22400
+    Command (m for help): w                                                                                                                      
+The partition table has been altered !                                                                                                                                                                                                                                     
+Create an ext3 file system on the new disk partition created on step 11.
+
+mkfs -t ext3 /dev/sdx1
+
+Caution: Ensure you have selected the right device, there is no undo.
+ 
+Run the fdisk command to verify the existence of the new disk partition you created:
+
+fdisk -l
+
+Run this command to create a mount point for the new disk partition:
+
+mkdir /New_Directory_Name
+ 
+Run this command to display the current content of /etc/fstab:
+cat /etc/fstab
+Using a text editor, edit fstab and add this line to add the disk partition to /etc/fstab so that it is available across reboots:
+/dev/sdx1 /New_Directory_Name ext3 defaults 1 3
+Note: Use a Linux text editor of your choice.
+Restart the Linux virtual machine and the new disk partition is now available.
