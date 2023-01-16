@@ -8,3 +8,9 @@ cd .. - do nadradeneho  adresara
 ren - rename - len subory
 move - presun suborov
 type - pozriem sa na txt subor
+
+novsi subor
+
+if [[ FILE1 -nt FILE2 ]]; then
+  echo FILE1 is newer than FILE2
+fi
